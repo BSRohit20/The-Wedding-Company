@@ -2,7 +2,13 @@
 
 A production-ready **full-stack** multi-tenant organization management service with a modern web UI, RESTful API built with FastAPI, and MongoDB backend. Features JWT authentication, dynamic collection creation, and a responsive frontend.
 
-## 🌐 Live Application
+## 🌐 Live Demo
+
+**🚀 Deployed Application**: https://the-wedding-company.onrender.com  
+**📚 API Documentation**: https://the-wedding-company.onrender.com/docs  
+**🏥 Health Check**: https://the-wedding-company.onrender.com/health
+
+## 🌐 Local Development
 
 **🎨 Frontend UI**: http://localhost:8000  
 **📚 API Documentation**: http://localhost:8000/docs  
@@ -359,6 +365,21 @@ pip install pytest pytest-asyncio httpx
 pytest tests/
 ```
 
+## � Deployment
+
+This application is deployed on **Render** with MongoDB Atlas.
+
+**Live URL**: https://the-wedding-company.onrender.com
+
+### Deployment Stack:
+- **Hosting**: Render (Free tier)
+- **Database**: MongoDB Atlas (Free M0 cluster)
+- **CI/CD**: Automatic deployment from GitHub
+
+### Environment Variables Required:
+- `MONGODB_URL`: MongoDB Atlas connection string
+- `SECRET_KEY`: JWT secret key for authentication
+
 ## 📝 License
 
 This project is created for assignment purposes.
@@ -366,6 +387,8 @@ This project is created for assignment purposes.
 ## 👥 Author
 
 Backend Intern Assignment Implementation
+
+**GitHub Repository**: https://github.com/BSRohit20/The-Wedding-Company
 
 ---
 

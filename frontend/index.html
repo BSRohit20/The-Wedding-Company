@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <h1>🏢 Organization Management System</h1>
+                <p class="subtitle">Multi-Tenant Organization Management Platform</p>
+            </div>
+            <div class="auth-status" id="authStatus">
+                <span class="status-indicator offline"></span>
+                <span>Not Authenticated</span>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('create')">Create Organization</button>
+            <button class="tab-button" onclick="showTab('login')">Admin Login</button>
+            <button class="tab-button" onclick="showTab('view')">View Organization</button>
+            <button class="tab-button" onclick="showTab('update')">Update Organization</button>
+            <button class="tab-button" onclick="showTab('delete')">Delete Organization</button>
+        </div>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Create Organization Tab -->
+            <div id="create" class="tab-content active">
+                <div class="card">
+                    <h2>Create New Organization</h2>
+                    <p class="description">Register a new organization with an admin account</p>
+                    
+                    <form id="createForm" onsubmit="createOrganization(event)">
+                        <div class="form-group">
+                            <label for="create_org_name">Organization Name</label>
+                            <input type="text" id="create_org_name" placeholder="e.g., techcorp" required>
+                            <small>Only alphanumeric characters, hyphens, and underscores allowed</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="create_email">Admin Email</label>
+                            <input type="email" id="create_email" placeholder="admin@example.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="create_password">Admin Password</label>
+                            <input type="password" id="create_password" placeholder="Minimum 8 characters" required minlength="8">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-icon">➕</span> Create Organization
+                        </button>
+                    </form>
+                    
+                    <div id="createResponse" class="response-box"></div>
+                </div>
+            </div>
+
+            <!-- Login Tab -->
+            <div id="login" class="tab-content">
+                <div class="card">
+                    <h2>Admin Login</h2>
+                    <p class="description">Authenticate to access protected operations</p>
+                    
+                    <form id="loginForm" onsubmit="adminLogin(event)">
+                        <div class="form-group">
+                            <label for="login_email">Email</label>
+                            <input type="email" id="login_email" placeholder="admin@example.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="login_password">Password</label>
+                            <input type="password" id="login_password" placeholder="Enter password" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-icon">🔐</span> Login
+                        </button>
+                    </form>
+                    
+                    <div id="loginResponse" class="response-box"></div>
+                </div>
+            </div>
+
+            <!-- View Organization Tab -->
+            <div id="view" class="tab-content">
+                <div class="card">
+                    <h2>View Organization</h2>
+                    <p class="description">Retrieve organization details by name</p>
+                    
+                    <form id="viewForm" onsubmit="viewOrganization(event)">
+                        <div class="form-group">
+                            <label for="view_org_name">Organization Name</label>
+                            <input type="text" id="view_org_name" placeholder="e.g., techcorp" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-icon">🔍</span> Get Details
+                        </button>
+                    </form>
+                    
+                    <div id="viewResponse" class="response-box"></div>
+                </div>
+            </div>
+
+            <!-- Update Organization Tab -->
+            <div id="update" class="tab-content">
+                <div class="card">
+                    <h2>Update Organization</h2>
+                    <p class="description">Rename organization and migrate data (Authentication Required)</p>
+                    
+                    <div class="auth-warning" id="updateAuthWarning">
+                        ⚠️ Please login first to update organizations
+                    </div>
+                    
+                    <form id="updateForm" onsubmit="updateOrganization(event)">
+                        <div class="form-group">
+                            <label for="update_old_name">Current Organization Name</label>
+                            <input type="text" id="update_old_name" placeholder="e.g., techcorp" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="update_new_name">New Organization Name</label>
+                            <input type="text" id="update_new_name" placeholder="e.g., techcorp_global" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-warning">
+                            <span class="btn-icon">✏️</span> Update Organization
+                        </button>
+                    </form>
+                    
+                    <div id="updateResponse" class="response-box"></div>
+                </div>
+            </div>
+
+            <!-- Delete Organization Tab -->
+            <div id="delete" class="tab-content">
+                <div class="card">
+                    <h2>Delete Organization</h2>
+                    <p class="description">Permanently delete organization and all data (Authentication Required)</p>
+                    
+                    <div class="auth-warning" id="deleteAuthWarning">
+                        ⚠️ Please login first to delete organizations
+                    </div>
+                    
+                    <form id="deleteForm" onsubmit="deleteOrganization(event)">
+                        <div class="form-group">
+                            <label for="delete_org_name">Organization Name</label>
+                            <input type="text" id="delete_org_name" placeholder="e.g., techcorp" required>
+                        </div>
+                        
+                        <div class="danger-warning">
+                            ⚠️ <strong>Warning:</strong> This action cannot be undone. All organization data will be permanently deleted.
+                        </div>
+                        
+                        <button type="submit" class="btn btn-danger">
+                            <span class="btn-icon">🗑️</span> Delete Organization
+                        </button>
+                    </form>
+                    
+                    <div id="deleteResponse" class="response-box"></div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>

@@ -14,12 +14,19 @@
         <!-- Header -->
         <header>
             <div class="header-content">
-                <h1>🏢 Organization Management System</h1>
-                <p class="subtitle">Multi-Tenant Organization Management Platform</p>
+                <div class="brand">
+                    <div class="logo">🏢</div>
+                    <div class="brand-text">
+                        <h1>Organization Management System</h1>
+                        <p class="tagline">Enterprise Multi-Tenant Platform</p>
+                    </div>
+                </div>
             </div>
-            <div class="auth-status" id="authStatus">
-                <span class="status-indicator offline"></span>
-                <span>Not Authenticated</span>
+            <div class="header-right">
+                <div class="auth-status" id="authStatus">
+                    <span class="status-indicator offline"></span>
+                    <span class="status-text">Not authenticated</span>
+                </div>
             </div>
         </header>
 
@@ -37,8 +44,9 @@
             <!-- Create Organization Tab -->
             <div id="create" class="tab-content active">
                 <div class="card">
-                    <h2>Create New Organization</h2>
-                    <p class="description">Register a new organization with an admin account</p>
+                    <div class="card-icon">🚀</div>
+                    <h2>Create Organization</h2>
+                    <p class="description">Register your organization and create an admin account to get started</p>
                     
                     <form id="createForm" onsubmit="createOrganization(event)">
                         <div class="form-group">
@@ -95,8 +103,9 @@
             <!-- View Organization Tab -->
             <div id="view" class="tab-content">
                 <div class="card">
+                    <div class="card-icon">👁️</div>
                     <h2>View Organization</h2>
-                    <p class="description">Retrieve organization details by name</p>
+                    <p class="description">Retrieve comprehensive organization details and metadata information</p>
                     
                     <form id="viewForm" onsubmit="viewOrganization(event)">
                         <div class="form-group">

@@ -22,10 +22,10 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
     background-attachment: fixed;
     min-height: 100vh;
-    padding: 20px;
+    padding: 30px 20px;
     color: var(--text-color);
     position: relative;
 }
@@ -68,33 +68,45 @@ body::before {
 
 /* Header */
 header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
     color: white;
-    padding: 40px 50px;
+    padding: 30px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
+    border-bottom: 3px solid rgba(99, 102, 241, 0.5);
 }
 
-.header-content {
-    flex: 1;
-}
-
-.header-content h1 {
-    font-size: 2em;
-    font-weight: 700;
-    margin-bottom: 8px;
+.brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 20px;
 }
 
-.header-content .subtitle {
-    font-size: 1.05em;
-    opacity: 0.95;
+.logo {
+    font-size: 3em;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.brand-text h1 {
+    font-size: 1.75em;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.tagline {
+    font-size: 0.9em;
+    opacity: 0.85;
     font-weight: 400;
-    margin-top: 8px;
+    margin-top: 4px;
+    color: #a5b4fc;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
 }
 
 .auth-status {
@@ -240,10 +252,10 @@ main {
 .card {
     background: var(--card-bg);
     border-radius: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.07);
     padding: 40px;
     border: 1px solid var(--border-color);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
 }
@@ -254,36 +266,45 @@ main {
     top: 0;
     left: 0;
     width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark), #ec4899);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(99, 102, 241, 0.1);
+    transform: translateY(-8px);
 }
 
 .card:hover::before {
     transform: scaleX(1);
 }
 
-.card h2 {
+.card-icon {
+    font-size: 3em;
     margin-bottom: 20px;
-    font-size: 1.75em;
+    display: inline-block;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.card h2 {
+    margin-bottom: 16px;
+    font-size: 1.65em;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-weight: 700;
 }
 
 .description {
     color: var(--text-light);
     margin-bottom: 35px;
     font-size: 1.05em;
-    line-height: 1.6;
+    line-height: 1.7;
+    font-weight: 400;
 }
 
 /* Forms */
@@ -302,24 +323,27 @@ main {
 
 .form-group input {
     width: 100%;
-    padding: 14px 18px;
+    padding: 16px 20px;
     border: 2px solid var(--border-color);
     border-radius: 12px;
-    font-size: 1em;
+    font-size: 1.02em;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    background: var(--card-bg);
+    background: #fafafa;
     font-family: inherit;
+    color: var(--text-color);
 }
 
 .form-group input:hover {
-    border-color: rgba(99, 102, 241, 0.3);
+    border-color: rgba(99, 102, 241, 0.4);
+    background: white;
 }
 
 .form-group input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), 0 2px 8px rgba(0, 0, 0, 0.05);
     transform: translateY(-2px);
+    background: white;
 }
 
 .form-group small {
@@ -332,9 +356,9 @@ main {
 
 /* Buttons */
 button:not(.tab-button) {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
     color: white;
-    padding: 14px 32px;
+    padding: 16px 40px;
     border: none;
     border-radius: 12px;
     font-size: 1em;
@@ -346,10 +370,11 @@ button:not(.tab-button) {
     gap: 10px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
     position: relative;
     overflow: hidden;
-    margin-top: 8px;
+    margin-top: 12px;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
 }
 
 button:not(.tab-button)::before {

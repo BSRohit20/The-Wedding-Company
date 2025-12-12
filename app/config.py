@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
     
     # MongoDB Configuration
-    MONGODB_URL: str = "mongodb://localhost:27017"
+    MONGODB_URL: str = "mongodb://localhost:27017"  # Update this with MongoDB Atlas URL for production
     MASTER_DB_NAME: str = "master_organization_db"
     
     # JWT Configuration

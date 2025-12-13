@@ -3,7 +3,7 @@ API routes for organization management.
 Defines all REST endpoints for the service.
 """
 from fastapi import APIRouter, Depends, status, Query
-from fastapi.security import HTTPAuthorizationCredentials
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from app.schemas import (
     OrganizationCreateRequest,
     OrganizationUpdateRequest,
@@ -78,9 +78,7 @@ async def update_organization(
     request: OrganizationUpdateRequest,
     service: OrganizationService = Depends(get_organization_service),
     security_manager: SecurityManager = Depends(get_security_manager),
-    credentials: HTTPAuthorizationCredentials = Depends(
-        lambda: security_manager.security
-    )
+    credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer())
 ):
     """
     Update an organization (authentication required).
@@ -105,9 +103,7 @@ async def delete_organization(
     request: OrganizationDeleteRequest,
     service: OrganizationService = Depends(get_organization_service),
     security_manager: SecurityManager = Depends(get_security_manager),
-    credentials: HTTPAuthorizationCredentials = Depends(
-        lambda: security_manager.security
-    )
+    credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer())
 ):
     """
     Delete an organization (authentication required).
